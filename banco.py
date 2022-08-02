@@ -8,6 +8,10 @@ from bb_dd_cuentas import *
 
 class Banco():
 
+    #Constructor de la clase Banco:
+    #Diccionarios que almacenan datos de cuentas, clientes_dni, clientes_usuarios, clientes_pymes,
+    #sueldos_pymes, dic_plazofijo, movimientos_cuentas, clientes_log, adm_usuarios, adm_password,
+    #costos_mantenim y sucursales
     def __init__(self):
 
         self.cuenta = {}

@@ -1,0 +1,89 @@
+banco.py
+
+EJECUTA:
+
+1) Crea objeto banco
+2) llama metodo banco.load_datos => 
+3) llama metodo banco.load_pymes
+4) llama metodobanco.load_cuentas
+5) llama metodobanco.loguin
+
+
+Constructor: 
+- Diccionarios:
+   - cuenta
+   - clientes_dni
+   - clientes_usuarios 
+   - clientes_pymes 
+   - sueldos_pymes 
+   - dic_plazo_fijo 
+   - movimientos_cuentas
+   - cliente_log = None
+   - adm_usuario = "administrador"
+   - adm_password = "adm1n1str4d0r"
+   - costos_mantenim => CLAVE STR tipo de gasto, VALOR INT COSTO
+   - dictSucursale
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
