@@ -24,7 +24,7 @@ class Banco():
         self.cliente_log = None
         self.adm_usuario = "administrador"
         self.adm_password = "adm1n1str4d0r"
-        self.costos_mantenim = {
+        self.costos_mantenim = { 
             1: ["Monto Minimo Saldo Retenido (SR)",5000],
             2: ["Mantenimiento Caja Ahorro común",200],
             3: ["Mantenimiento Caja Ahorro SR",0],
@@ -55,7 +55,7 @@ class Banco():
             102: ["Bolívar"],
             103: ["Azul"]
         }
-    #
+    #Crea objeto datos con el dicc de la base de datos
     def load_datos(self):
         for dato in Base_datos.get_usuarios_nombre():
             datos = Base_datos.get_usuarios_nombre()[dato]
@@ -63,12 +63,14 @@ class Banco():
             self.clientes_usuarios[datos["Nombre usuario"]] = ob_cliente
             self.clientes_dni[datos["D.N.I."]] = ob_cliente 
 
+    #Crea objeto pymes con el dicc de las pymes
     def load_pymes(self):
         for py in BaseDatosPymes.get_pymes():
             pymes = BaseDatosPymes.get_pymes()[py]
             ob_pymes = Pymes(pymes["Razón social"], pymes["Domicilio"], pymes["Cuit/cuil"], pymes["Teléfono"], pymes["Email"], pymes["Nombre usuario"], pymes["Password"])
             self.clientes_pymes[pymes["Nombre usuario"]] = ob_pymes
     
+    #Crea objeto cuentas con el dicc de las pymes
     def load_cuentas(self):
         for cu in BaseDatosCuentas.get_cuentas():
             cuentas = BaseDatosCuentas.get_cuentas()[cu]
@@ -80,6 +82,7 @@ class Banco():
             self.movimientos_cuentas[cu][dia] = ( 
             "APERTURA DE CUENTA")
 
+    #Carga el menú de loguin de eleccion de usuario
     def loguin(self):
         print("\n\n**********************")
         print("    BANCO  BRULIM    ")
@@ -89,6 +92,7 @@ class Banco():
         print("1- ADMINISTRADOR\n2- CLIENTE INDIVIDUO\n3- CLIENTE PYME")
         opc = input("Opción: ")
         intento = 2
+        #BUCLE INFINITO PARA MENU
         while intento >0: #PERMITE 2 INTENTOS, SI SON ERRONEOS SALE DEL MENÚ
             if opc == "1":
                 usuario = input("Ingrese el usuario: ") or ("administrador")#VALIDA EL USUARIO
@@ -110,7 +114,6 @@ class Banco():
                         us = self.clientes_usuarios.get(usuario)
                         print("\nHa ingresado como individuo\n")
                         self.cliente_log = us
-                        #print(self.cliente_log)
                         self.menu_individuos()
                 else:
                     print("Usuario o contraseña incorrecto")
@@ -137,6 +140,7 @@ class Banco():
                 print("OPCION INVÁLIDA\nINGRESE UNA OPCION VALIDA")
                 self.loguin()
 
+    #MENU_ADMINISTRADOR
     def menu_administrador(self):
         loguin = True
         while loguin == True:
@@ -279,7 +283,7 @@ class Banco():
             opcion = input("MENU DE MOVIMIENTOS\n1- MOVIMIENTOS DE TODAS LAS CUENTAS DEL BANCO\n2- MOVIMIENTOS DE UNA CUENTA\n3- VOLVER AL MENU ANTERIOR\nIngrese la opción ")
             if opcion == "1":
                 for cu in self.movimientos_cuentas:
-                    mov = self.movimientos_cuentas.get(cu)
+                    mov = self.movimientos_cuentas.get(cu) 
                     print("Movimientos de la cuenta N° ", cu)
                     print("\n\t", mov)
                 op = True
@@ -364,7 +368,7 @@ class Banco():
                 print("OPCIÓN INCORRECTA")
                 op = True
 
-    def listar_plazos_fijos(self):
+    def listar_plazos_fijos(self): #LISTAR_PLAZOS_FIJOS
         print("Lista de plazos fijos")
         for cu in self.dic_plazo_fijo:
             print(self.dic_plazo_fijo[cu].__str__())
@@ -437,7 +441,7 @@ class Banco():
                 print("OPCIÓN INCORRECTA")
                 self.menu_pyme()
 
-    def movimientos_mi_cuenta_ind(self):
+    def movimientos_mi_cuenta_ind(self): #MOVIMIENTOS_CUENTA_INDIVIDUOS
         for cli in self.clientes_usuarios:
             cliente = self.clientes_usuarios.get(cli)
             if cliente.nombre_us == self.cliente_log.nombre_us:
@@ -475,7 +479,7 @@ class Banco():
                             print("OPCION INCORRECTA")
                             otra = True
 
-    def movimientos_mi_cuenta_pyme(self):
+    def movimientos_mi_cuenta_pyme(self):#MOVIMIENTOS_CUENTAS_PYME
         for cli in self.clientes_pymes:
             cliente = self.clientes_pymes.get(cli)
             if cliente.nombre_us == self.cliente_log.nombre_us:
@@ -513,7 +517,7 @@ class Banco():
                             print("OPCION INCORRECTA")
                             otra = True
 
-    def pagar_sueldos(self):
+    def pagar_sueldos(self): 
         print("****MENÚ SUELDOS****\n1- AGREGAR EMPLEADO\n2- LISTAR EMPLEADOS\n3- MODIFICAR DATOS EMPLEADOS\n4- LISTAR SUELDOS A PAGAR\n5- PAGAR SUELDOS\nS- SALIR")
         opcion = input("Ingrese opción: ")
         if opcion == "1":
@@ -584,7 +588,7 @@ class Banco():
             input("Presione cualquier tecla para continuar")
             self.pagar_sueldos()
 
-    def modif_datos_empl(self):
+    def modif_datos_empl(self): #MODIFICAR_DATOS_EMPLEADOR
         print("Menú para modificar datos de un empleado")
         while True:
             dni_empl = input("Ingrese el D.N.I.: ")
@@ -669,7 +673,7 @@ class Banco():
             input("Presione cualquier tecla para continuar")
             self.pagar_sueldos()
 
-    def liq_sueldos(self, tit):
+    def liq_sueldos(self, tit): #LIQUIDAR_SUELDOS
         print("SE VAN A LIQUIDAR LOS SUELDOS DE SUS EMPLEADOS: ")
         print("ELIJA UNA CUENTA DE DONDE DEBITAR LOS SUELDOS")
         self.mis_saldos(self.cliente_log.nombre_us)
@@ -739,7 +743,7 @@ class Banco():
                 input("Presione cualquier tecla para continuar")
                 self.menu_pyme()
 
-    def alta_cli_pymes(self):
+    def alta_cli_pymes(self): #ALTA_CLIENTE_PYMES
         print("Cargar un cliente Pyme")
         razon_social = input("Razón social: ")
         domicilio = input("Domicilio: ")
@@ -763,7 +767,7 @@ class Banco():
         py_nueva = Pymes(razon_social, domicilio, cuitCuil, telefono, email, nombre_us, password)
         self.clientes_pymes[nombre_us] = py_nueva
 
-    def alta_cli_indiv(self):
+    def alta_cli_indiv(self): #ALTA_CLIENTE_INDIVIDUO
         print("Cargar un cliente Individuo")
         nombre = input("Nombre: ")
         apellido = input("Apellido :")
@@ -790,7 +794,7 @@ class Banco():
         self.clientes_usuarios[nombre_us] = cli_nuevo
         self.clientes_dni[dni] = cli_nuevo
 
-    def modif_datos_cliente(self):
+    def modif_datos_cliente(self): #MODIFICAR_DATOS-CLIENTE
         print("****MENU PARA MODIFICAR DATOS DE CLIENTE INDIVIDUO****")
         while True:
             dni = input("Ingrese el D.N.I. del cliente: ")
@@ -798,9 +802,9 @@ class Banco():
                 dni = int(dni)
                 break
             except ValueError:
-                print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
+                print("DEBE INGRESAR NÚMEROS, SIN PUNTOS")
         existe = dni in self.clientes_dni
-        if existe == True:
+        if existe:
             modificar = True
             while modificar == True:
                 print("Cliente ", self.clientes_dni[dni].apellido, " ",self.clientes_dni[dni].nombre)
@@ -859,7 +863,7 @@ class Banco():
                 else:
                     opcion = False
 
-    def modif_datos_cliente_pymes(self):
+    def modif_datos_cliente_pymes(self): #MODIFICAR_DATOS-PYMES
         nom_pyme = input("Ingrese el nombre de usuario de la pymes: ")
         print("****MENU PARA MODIFICAR DATOS DE CLIENTE PYMES****")
         existe = nom_pyme in self.clientes_pymes
@@ -922,13 +926,7 @@ class Banco():
                 else:
                     opcion = False
 
-    # def listar_cuentas(self):
-    #     print("Lista de cuentas")
-    #     for cu in self.cuenta:
-    #         print(self.cuenta[cu].__str__())
-    #     input("Presione cualquier tecla para continuar")
-
-    def saldos (self):
+    def saldos (self): #MENU-SALDOS
         print("****MENU SALDOS****")
         print("Ver el saldo de: ")
         opcion = input("1- TODAS LAS CUENTAS\n2- CAJA AHORRO COMÚN\n3- CAJA AHORRO CON SALDO RETENIDO\n4- CUENTA CORRIENTE COMÚN\n5- CUENTA CORRIENTE CON SALDO RETENIDO\n6- CUENTAS CORRIENTE CON SALDO DEUDOR\n7- VOLVER AL MENU ANTERIOR\nIngrese opción: ")
@@ -1007,7 +1005,7 @@ class Banco():
             print("OPCION INCORRECTA")
             self.saldos()
 
-    def buscar_cliente(self, cliente):
+    def buscar_cliente(self, cliente): #BUSCAR_CLIENTES
         a = cliente in self.clientes_pymes
         if a == True:
             print("\nCLIENTE ", cliente, "\n", self.clientes_pymes[cliente],"\n")
@@ -1020,7 +1018,7 @@ class Banco():
             else:
                 print("\nEL CLIENTE ",cliente," NO EXISTE\n")
 
-    def buscar_cliente_dni(self, dni):
+    def buscar_cliente_dni(self, dni): #BUSCAR_DNI
         a = dni in self.clientes_dni
         if a == True:
             print("\nEL CLIENTE CON DNI ", dni, "ES:\n", self.clientes_dni[dni],"\n")
@@ -1028,7 +1026,7 @@ class Banco():
         else:
             print("\nEL CLIENTE CON DNI ",dni," NO EXISTE\n")
 
-    def deposito(self):
+    def deposito(self): #DEPOSITO_CUENTA
         while True:
             dep = input("Monto a depositar: $ ")
             cta = input("N° de cuenta destino: ")
@@ -1053,7 +1051,7 @@ class Banco():
         depo = datetime.now()
         self.movimientos_cuentas[cta]["Día ", depo.year, depo.month, depo.day, "Hora ", depo.hour, depo.minute, depo.second] = ("REALIZO UN DEPOSITO POR $ " + str(dep))
 
-    def transferencia_indiv(self):
+    def transferencia_indiv(self): #TRANSFERENCIA_INDIVIDUO
         print("****REALIZAR UNA TRANSFERENCIA****")
         monto = True
         while monto == True:
@@ -1249,7 +1247,7 @@ class Banco():
                         print("Opción incorrecta")
                         o = True
         
-    def pago_en_linea_indiv(self):
+    def pago_en_linea_indiv(self): #PAGO_EN_LINEA_INDIVIDUO
         monto=True
         while monto == True:
             while True:
@@ -1359,7 +1357,7 @@ class Banco():
                 input("Presione cualquier tecla para continuar")
                 monto = True
 
-    def listar_sucursales (self):
+    def listar_sucursales (self): #LISTA_SUCURSALES
         for suc in self.dictSucursales:
             print(
             """ N° sucursal: {}
@@ -1367,7 +1365,7 @@ class Banco():
             """.format(suc, self.dictSucursales[suc][0]))
         input("Presione cualquier tecla para continuar")
 
-    def agregar_sucursal(self):
+    def agregar_sucursal(self): 
         while True:
             num_suc = input("Ingrese el n° de sucursal: ")
             try:
@@ -1378,14 +1376,14 @@ class Banco():
         ciudad = input("Ingrese la localidad: ")
         self.dictSucursales[num_suc] = [ciudad]
 
-    def listar_costos_mant(self):
+    def listar_costos_mant(self): #LISTA_COSTO_MANTENIMIENTO
         print ("********\n COSTOS DE MANTENIMIENTO Y COMISIONES")
         for cos in self.costos_mantenim:
             print("""\t\t ID: {}
                 Tipo de costo: {}
                 Monto: $ {}""".format(cos,self.costos_mantenim[cos][0], self.costos_mantenim[cos][1]))
 
-    def modif_costos(self,id):
+    def modif_costos(self,id): #MODIFICAR_COSTOS_MANTENIMIENTO
         print("El costo actual para ",self.costos_mantenim[id][0], " es $ ",self.costos_mantenim[id][1])
         while True:
             nuevo = input("Ingrese el nuevo monto: $ ")
@@ -1397,14 +1395,14 @@ class Banco():
         self.costos_mantenim[id][1] = nuevo
         print("El nuevo costo para ", self.costos_mantenim[id][0], " es $ ", self.costos_mantenim[id][1])
 
-    def listar_cli_ind(self):
+    def listar_cli_ind(self): #LISTAR_CLIENTES_INDIVIDUO LISTADO_CLIENTE_INDIVIDUO
         print("*****LISTADO DE CLIENTES INDIVIDUOS*****")
         for cli in self.clientes_usuarios:
             print(self.clientes_usuarios[cli])
         input("Presione cualquier tecla para continuar")
         self.menu_administrador()
     
-    def listar_pymes(self):
+    def listar_pymes(self): #LISTAR_PYMES LISTADO_PYMES
         print("*****LISTADO DE USUARIOS PYMES*****")
         for py in self.clientes_pymes:
             print(self.clientes_pymes[py])
@@ -1418,7 +1416,7 @@ class Banco():
         input("Presione cualquier tecla para continuar")
         self.menu_administrador()
 
-    def listar_cuentas_propias(self, tit):
+    def listar_cuentas_propias(self, tit): #LISTADO_CUENTAS_PROPIAS
         lista = True
         if lista == True:
             print("Lista de cuentas")
@@ -1431,7 +1429,7 @@ class Banco():
             lista = False
             input("Presione cualquier tecla para continuar")
 
-    def ver_mis_plazos_fijos(self):
+    def ver_mis_plazos_fijos(self): #LISTADO_PLAZOS_FIJOS
         lista = True
         if lista == True:
             print("Mis plazos fijos")
@@ -1444,7 +1442,7 @@ class Banco():
             lista = False
             input("Presione cualquier tecla para continuar")
         
-    def mis_saldos (self,tit):
+    def mis_saldos (self,tit): #LISTAR_SALDOS
         lista = True
         if lista == True:
             print("Saldo de mis cuentas")
@@ -1583,7 +1581,7 @@ class Banco():
                 self.menu_pyme()
 
     def plazo_fijo(self):
-        print("****MENU PLAZO FIJO****")
+        print("****MENU PLAZO FIJO****") #MENU_PLAZO_FIJO
         volver = True
         while volver == True:
             opcion = input("1- Abrir un plazo fijo\n2- Listar mis plazos fijos\n3- Volver al menú anterior\nIngrese la opción: ")
@@ -1739,7 +1737,7 @@ class Banco():
         else:
             volver = True
             
-    def modif_int_pla_fijo(self):
+    def modif_int_pla_fijo(self): #MODIFICAR_INTERES_PLAZO_FIJO
         print("****MENU PARA MODIFICAR INTERESES DE PLAZO FIJOS****")
         modif = True
         while modif == True:
@@ -1833,7 +1831,7 @@ class Banco():
                 print("OPCION INCORRECTA")
                 modif = True
 
-    def comprar_mon_ext(self):
+    def comprar_mon_ext(self): #COMPRAR_MONEDA_EXTRANJERA
         monto = True
         while monto == True:
             print("VA A REALIZAR UNA COMPRA DE DOLARES ESTADOUNIDENSES")
@@ -1876,7 +1874,7 @@ class Banco():
                 print("LA CUENTA N° ", cta, " NO EXISTE")
                 monto = True
 
-    def bonos(self):
+    def bonos(self): #COMPRAR_BONOS
         monto = True
         while monto == True:
             print("VA A REALIZAR UNA COMPRA DE BONOS")

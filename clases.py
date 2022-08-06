@@ -8,8 +8,7 @@ class Usuario():
     def validar_login():
         pass
 
-
-# 
+ 
 class Administrador(Usuario):
     def __init__ (self, nombre_us, password):
         Usuario.__init__(self, nombre_us, password)

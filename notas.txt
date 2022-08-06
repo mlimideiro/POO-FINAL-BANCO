@@ -1,56 +1,201 @@
-banco.py
+BANCO.PY
 
 EJECUTA:
 
 1) Crea objeto banco
 2) llama metodo banco.load_datos => Crea objeto datos con el dicc de la base de datos
-3) llama metodo banco.load_pymes
-4) llama metodobanco.load_cuentas
-5) llama metodobanco.loguin
+3) llama metodo banco.load_pymes => Crea objeto pymes con el dicc de las pymes
+4) llama metodo banco.load_cuentas => Crea objeto cuentas con el dicc de las pymes
+5) llama metodo banco.loguin => #Carga el menú de loguin de eleccion de usuario
 
 
 Constructor: 
 - Diccionarios:
-   - cuenta
-   - clientes_dni
-   - clientes_usuarios 
-   - clientes_pymes 
-   - sueldos_pymes 
-   - dic_plazo_fijo 
-   - movimientos_cuentas
-   - cliente_log = None
-   - adm_usuario = "administrador"
-   - adm_password = "adm1n1str4d0r"
-   - costos_mantenim => CLAVE STR tipo de gasto, VALOR INT COSTO
-   - dictSucursale
+   self.cuenta = {}
+   self.clientes_dni = {}
+   self.clientes_usuarios = {}
+   self.clientes_pymes = {}
+   self.sueldos_pymes = {}
+   self.dic_plazo_fijo = {}
+   self.movimientos_cuentas = {}
+   self.cliente_log = None
+   self.adm_usuario = "administrador"
+   self.adm_password = "adm1n1str4d0r"
+   self.costos_mantenim => CLAVE STR tipo de gasto, VALOR INT COSTO
+   self.dictSucursale
+
+COSTOS MANTENIMIENTO
+1: ["Monto Minimo Saldo Retenido (SR)",5000],
+2: ["Mantenimiento Caja Ahorro común",200],
+3: ["Mantenimiento Caja Ahorro SR",0],
+4: ["Transferencia C.A.Común",5],
+5: ["Transferencia C.A.S.R.",0],
+6: ["Pagos en línea C.A.Común",3],
+7: ["Pagos en línea C.C.S.R. y C.A.S.R.",0],
+8: ["Mantenimiento Cuenta Corriente en Pesos",500],
+9: ["Mantenimiento Cuenta Corriente Moneda Extranjera",800],
+10: ["Mantenimiento Cuenta Corriente con SR",0],
+11: ["Transferencia C.C.Común",5],
+12: ["Transferencia C.C.SR",0],
+13: ["Pagos en linea C.C.Común",3],
+14: ["Plazo fijo", 3, 5, 8, 10, 13],
+15: ["Costo depósito C.A.Común",5],
+16: ["Costo depósito C.A.S.R.",0],
+17: ["Costo depósito C.C.Común",5],
+18: ["Costo depósito C.C.S.R.",0],
+19: ["Pago Sueldos Mismo Banco",0],
+20: ["Pago Sueldos Otro Banco",4],
+21: ["Cotización Dólar",rd.randint(100,190)],
+22: ["Valor Bonos",rd.randint(1000,5000)],
+23: ["Variación Bonos",rd.randint(2,5)]
+
+MÉTODOS
+def load_datos(self):
+def load_pymes(self): 
+def load_cuentas(self):
+def loguin(self):
+def menu_administrador(self):
+def movimientos(self):
+def listar_plazos_fijos(self):
+def menu_individuos(self):
+def menu_pyme (self):
+def movimientos_mi_cuenta_ind(self):
+def movimientos_mi_cuenta_pyme(self):
+def pagar_sueldos(self):
+def agregar_empleado(self):
+def listar_empleados(self, tit):
+def modif_datos_empl(self):
+def listar_sueldos(self, tit):
+def liq_sueldos(self, tit):
+def alta_cli_pymes(self):
+def alta_cli_indiv(self):
+def modif_datos_cliente(self):
+def modif_datos_cliente_pymes(self):
+def saldos (self):
+def buscar_cliente(self, cliente):
+def buscar_cliente_dni(self, dni):
+def deposito(self):
+def transferencia_indiv(self):
+def transferencia_pyme(self):
+def extraccion (self):
+def pago_en_linea_indiv(self):
+def pago_en_linea_pyme(self):
+def listar_sucursales (self):
+def agregar_sucursal(self):
+def listar_costos_mant(self):
+def modif_costos(self,id): 
+def listar_cli_ind(self):
+def listar_pymes(self):
+def listar_cuentas(self):
+def listar_cuentas_propias(self, tit):
+def ver_mis_plazos_fijos(self):
+def mis_saldos (self,tit): 
+def crear_cuenta_pymes(self):
+def plazo_fijo(self):
+def modif_int_pla_fijo(self):
+def comprar_mon_ext(self):
+def bonos(self):
+def crear_cuenta(self):
+def cerrar_cuenta_pyme(self, titular):
+def cerrar_cuenta_individuo(self, titular):
 
 
 
+CLASES.PY 
+class Usuario():
+        self.nombre_us = nombre_us
+        self.password = password
+        self.dic_us = {}
 
+class Administrador(Usuario):
+        Usuario.__init__(self, nombre_us, password)
+        self.nombre_us = "ADMINISTRADOR"
+        self.password = "ADM1N1STR4DOR"
 
+class Clientes():
+        self.domicilio = domicilio
+        self.cuitCuil = cuitCuil
+        self.telefono = telefono
+        self.email = email
 
+class Individuos(Clientes,Usuario):
+        Clientes.__init__(self, domicilio, cuitCuil, telefono, email)
+        Usuario.__init__(self,nombre_us, password)
+        self.nombre = nombre
+        self.apellido = apellido
+        self.dni = dni
+        self.cuentas = {}
 
+   - def get_cuentas (self):
+   - def __str__(self):
 
+class Pymes(Clientes, Usuario):
+        Clientes.__init__(self, domicilio, cuitCuil, telefono, email)
+        Usuario.__init__(self,nombre_us, password)
+        self.razon_social = razon_social
+        self.cuentas = {}
 
+   - def get_cuentas (self):
+   - def __str__(self):
 
+class Empleado():
+        self.nombre = nombre
+        self.apellido = apellido
+        self.dni = dni
+        self.banco = banco
+        self.puesto = puesto
+        self.empresa = empresa
+        self.sueldo = sueldo
+        self.salario = salario
 
+   - def __str__(self):
 
+class Cuentas():
+        self.titular = titular
+        self.sucursal = sucursal
+        self.num_cuenta = num_cuenta
+        self.cbu = cbu
+        self.fecha_apert = fecha_apert
+        self.saldo = saldo
 
+class SaldoRetenido():
+        self.monto_retenido = monto_retenido
 
+class CajaAhorroComun(Cuentas):
+        Cuentas.__init__ (self, titular, sucursal, num_cuenta, cbu, fecha_apert, saldo)
+        self.tipo = tipo
 
+class CajaAhorroRS(Cuentas, SaldoRetenido):
+        Cuentas.__init__ (self, titular, sucursal, num_cuenta, cbu, fecha_apert, saldo)
+        SaldoRetenido.__init__(self, monto_retenido)
+        self.tipo = tipo
 
+   - def __str__(self):
 
+class CuentaCorrienteComun(Cuentas):
+        Cuentas.__init__ (self, titular, sucursal, num_cuenta, cbu, fecha_apert, saldo)
+        self.tipo = tipo
+        self.moneda = moneda
 
+   - def __str__(self):
 
+class CuentaCorrienteSR(Cuentas, SaldoRetenido):
+        Cuentas.__init__ (self, titular, sucursal, num_cuenta, cbu, fecha_apert, saldo)
+        SaldoRetenido.__init__(self, monto_retenido)
+        self.tipo = tipo
+        self.moneda = moneda
+   - def __str__(self):
 
-
-
-
-
-
-
-
-
+class PlazoFijo():
+        self.num_pf = num_pf
+        self.titular = titular
+        self.plazo = plazo
+        self.importe_inicial = importe_inicial
+        self.fecha_inicio = fecha_inicio
+        self.importe_retiro = importe_retiro
+        self.fecha_vencimiento = fecha_vencimiento
+        
+   - def __str__(self):
 
 
 
