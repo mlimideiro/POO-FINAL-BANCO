@@ -55,7 +55,7 @@ class Banco():
             102: ["Bolívar"],
             103: ["Azul"]
         }
-
+    #
     def load_datos(self):
         for dato in Base_datos.get_usuarios_nombre():
             datos = Base_datos.get_usuarios_nombre()[dato]
