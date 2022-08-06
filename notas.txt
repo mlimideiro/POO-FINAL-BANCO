@@ -3,7 +3,7 @@ banco.py
 EJECUTA:
 
 1) Crea objeto banco
-2) llama metodo banco.load_datos => 
+2) llama metodo banco.load_datos => Crea objeto datos con el dicc de la base de datos
 3) llama metodo banco.load_pymes
 4) llama metodobanco.load_cuentas
 5) llama metodobanco.loguin
