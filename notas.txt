@@ -99,9 +99,6 @@ def crear_cuenta(self):
 def cerrar_cuenta_pyme(self, titular):
 def cerrar_cuenta_individuo(self, titular):
 
-
-
-CLASES.PY 
 class Usuario():
         self.nombre_us = nombre_us
         self.password = password

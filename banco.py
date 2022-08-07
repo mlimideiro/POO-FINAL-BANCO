@@ -1,10 +1,23 @@
-from clases import *
+#from clases import *
 import random as rd
 from secuencia import *
 from datetime import date, datetime, timedelta
 from base_datos import *
 from bb_dd_pymes import *
 from bb_dd_cuentas import *
+from individuos import *
+from usuario import *
+from administrador import *
+from clientes import *
+from cajaahorrocomun import *
+from cuentas import *
+from cuentacorrientes import *
+from plazofijo import *
+from saldoretenido import *
+from cajaahorrocomun import *
+from cuentacorrientecomun import *
+from pymes import *
+from empleado import *
 
 class Banco():
 
@@ -161,7 +174,7 @@ class Banco():
                     print("Costos de mantenimiento")
                     self.listar_costos_mant()
                     print("Intereses mensuales plazo fijo:\n\t 30 DIAS = ", self.costos_mantenim[14][1], " %\n\t 60 DIAS = ", self.costos_mantenim[14][2], " %\n\t 90 DIAS = ", self.costos_mantenim[14][3], " %\n\t180 DIAS = ", self.costos_mantenim[14][4], " % \n\t360 DIAS = ", self.costos_mantenim[14][5], " %")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_administrador()
 
                 elif opc_adm == "3":
@@ -317,7 +330,7 @@ class Banco():
                                             mov = self.movimientos_cuentas.get(cu)
                                             print("Movimientos de la cuenta N° ", cuenta_a_buscar)
                                             print("\n\t", mov)
-                                            input("Presione cualquier tecla para continuar")
+                                            input("Presione cualquier tecla para continuar ")
                                     self.movimientos()
                                 else:
                                     print("La cuenta n° ", cuenta_a_buscar, " no exite o no pertenece al cliente ", cliente.apellido, cliente.nombre)
@@ -350,7 +363,7 @@ class Banco():
                                             mov = self.movimientos_cuentas.get(cu)
                                             print("Movimientos de la cuenta N° ", cuenta_a_buscar)
                                             print("\n\t", mov)
-                                            input("Presione cualquier tecla para continuar")
+                                            input("Presione cualquier tecla para continuar ")
                                     self.movimientos()
                                 else:
                                     print("La cuenta n° ", cuenta_a_buscar, " no exite o no pertenece al cliente ", cliente.razon_social)
@@ -463,7 +476,7 @@ class Banco():
                             mov = self.movimientos_cuentas.get(cu)
                             print("Movimientos de la cuenta N° ", cuenta_a_buscar)
                             print("\n\t", mov)
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                             self.menu_individuos()
                     self.movimientos_mi_cuenta_ind()
                 else:
@@ -501,7 +514,7 @@ class Banco():
                             mov = self.movimientos_cuentas.get(cu)
                             print("Movimientos de la cuenta N° ", cuenta_a_buscar)
                             print("\n\t", mov)
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                             self.menu_pyme()
                     self.movimientos_mi_cuenta_pyme()
                 else:
@@ -534,7 +547,7 @@ class Banco():
             self.menu_pyme()
         else:
             print("OPCIÓN INCORRECTA")
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.pagar_sueldos()
         
     def agregar_empleado(self):
@@ -585,7 +598,7 @@ class Banco():
                 else:
                     pass
             lista = False
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.pagar_sueldos()
 
     def modif_datos_empl(self): #MODIFICAR_DATOS_EMPLEADOR
@@ -656,7 +669,7 @@ class Banco():
                             True
         else:
             print("NO EXISTE EL EMPLEADO CON EL D.N.I. ", dni_empl)
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.pagar_sueldos()
 
     def listar_sueldos(self, tit):
@@ -714,7 +727,7 @@ class Banco():
                                 suel = datetime.now()
                                 self.movimientos_cuentas[cuenta_a_debitar]["Día ", suel.year, suel.month, suel.day, "Hora ", suel.hour, suel.minute, suel.second] = ("PAGO DE SUELDOS POR $ " + str(total + tot_comision))
                                 print("El saldo actual de la cuenta n° " + str(cuenta_a_debitar) + " es $ ", str(self.cuenta[cuenta_a_debitar].saldo))
-                                input("Presione cualquier tecla para continuar")
+                                input("Presione cualquier tecla para continuar ")
                                 monto = False
                             else:
                                 print("LA CUENTA N° ", cuenta_a_debitar, " NO EXISTE")
@@ -943,7 +956,7 @@ class Banco():
                 elif self.cuenta[cu].tipo == "3":
                     tipo = "Cuenta Corriente Saldo Ret."
                 print("Cuenta n° ",self.cuenta[cu].num_cuenta," ", tipo, " saldo $ ", self.cuenta[cu].saldo)
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.saldos()
         elif opcion == "2":
             print("Lista de las cuentas del tipo Caja Ahorro Común")
@@ -953,7 +966,7 @@ class Banco():
                     print("Cuenta n° ",self.cuenta[cu].num_cuenta," ", tipo, " saldo $ ", self.cuenta[cu].saldo)
                 else:
                     pass
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.saldos()
         elif opcion =="3":
             print("Lista de las cuentas del tipo Caja Ahorro con Retención de Saldo")
@@ -963,7 +976,7 @@ class Banco():
                     print("Cuenta n° ",self.cuenta[cu].num_cuenta," ", tipo, " saldo $ ", self.cuenta[cu].saldo)
                 else:
                     pass
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.saldos()
         elif opcion == "4":
             print("Lista de las cuentas del tipo Cuenta Corriente Común")
@@ -997,7 +1010,7 @@ class Banco():
                         print("Cuenta n° ",self.cuenta[cu].num_cuenta," ", tipo, " saldo $ ", self.cuenta[cu].saldo)
                 else:
                     pass
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
             self.saldos()
         elif opcion == "7":
             self.menu_administrador()
@@ -1009,12 +1022,12 @@ class Banco():
         a = cliente in self.clientes_pymes
         if a == True:
             print("\nCLIENTE ", cliente, "\n", self.clientes_pymes[cliente],"\n")
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
         elif a == False:
             a = cliente in self.clientes_usuarios
             if a == True:
                 print("\nCLIENTE ", cliente, " ENCONTRADO\n\n", self.clientes_usuarios[cliente],"\n")
-                input("Presione cualquier tecla para continuar")
+                input("Presione cualquier tecla para continuar ")
             else:
                 print("\nEL CLIENTE ",cliente," NO EXISTE\n")
 
@@ -1022,7 +1035,7 @@ class Banco():
         a = dni in self.clientes_dni
         if a == True:
             print("\nEL CLIENTE CON DNI ", dni, "ES:\n", self.clientes_dni[dni],"\n")
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
         else:
             print("\nEL CLIENTE CON DNI ",dni," NO EXISTE\n")
 
@@ -1093,15 +1106,15 @@ class Banco():
                         self.movimientos_cuentas[destino]["Día ", tran.year, tran.month, tran.day, "Hora ", tran.hour, tran.minute, tran.second] = ( 
             "RECIBIO UNA TRANSFERENCIA DE LA CUENTA N° " + str(origen) + " POR $ " + str(importe))
                         print("El saldo de la cuenta ", origen, " es $ ", self.cuenta[origen].saldo)
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         monto = False
                     else:
                         print("FONDOS INSUFICIENTES\n INGRESE UN MONTO < o = A $ ", self.cuenta[origen].saldo - costo)
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         monto = True
                 else:
                     print("Ud no es el titular de la cuenta ", origen)
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_individuos()
             elif orig == False:
                 print("La cuenta n° ", origen, " no existe")
@@ -1167,11 +1180,11 @@ class Banco():
                     self.movimientos_cuentas[destino][["Día ", tran.year, tran.month, tran.day, "Hora ", tran.hour, tran.minute, tran.second]] = ( 
             "RECIBIO UNA TRANSFERENCIA DE LA CUENTA N° " + str(origen) + " POR $ " + str(importe))
                     print("El saldo de la cuenta ", origen, " es $ ", self.cuenta[origen].saldo)
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     monto = False
                 else:
                     print("Ud no es el titular de la cuenta ", origen)
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_individuos()
             elif orig == False:
                 print("La cuenta n° ", origen, " no existe")
@@ -1185,7 +1198,7 @@ class Banco():
                         self.menu_individuos()
                     else:
                         print("OPCION INCORRECTA")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         error = True
             else:
                 print("La cuenta n° ", destino, " no existe")
@@ -1199,7 +1212,7 @@ class Banco():
                         self.menu_individuos()
                     else:
                         print("OPCION INCORRECTA")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         error = True
               
     def extraccion (self):
@@ -1230,7 +1243,7 @@ class Banco():
                         monto = True
                 else:
                     print("La cuenta ", cta, " no le pertenece")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_individuos()
             else:
                 print("LA CUENTA N° ", cta, " NO EXISTE")
@@ -1271,7 +1284,7 @@ class Banco():
                             self.movimientos_cuentas[cta]["Día ", movim.year, movim.month, movim.day, "Hora ", movim.hour, movim.minute, movim.second] = ( 
             "REALIZO UN PAGO EN LINEA POR $ "+ str(pago))
                             print("Saldo actual: $ ", self.cuenta[cta].saldo)
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                         else:
                             print("FONDOS INSUFICIENTES\n SU SALDO ACTUAL ES: $ " ,self.cuenta[cta].saldo ,"\n PARA REALIZAR EL PAGO DESEADO NECESITA DISPONER DE : $ ", pago + self.costos_mantenim[6][1])
                             dep = input("¿Desea hacer un depósito?\n Y/N ")
@@ -1285,7 +1298,7 @@ class Banco():
                             monto = False
                             print("****PAGO REALIZADO******")
                             print("Saldo actual: $ ", self.cuenta[cta].saldo)
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                         else:
                             print("FONDOS INSUFICIENTES\n SU SALDO ACTUAL ES: $ " ,self.cuenta[cta].saldo - self.cuenta[cta].monto_retenido,"\n PARA REALIZAR EL PAGO DESEADO NECESITA DISPONER DE : $ ", pago + self.costos_mantenim[7][1])
                             dep = input("¿Desea hacer un depósito?\n Y/N ")
@@ -1299,7 +1312,7 @@ class Banco():
                             monto = False
                             print("****PAGO REALIZADO******")
                             print("Saldo actual: $ ", self.cuenta[cta].saldo)
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                         else:
                             print("FONDOS INSUFICIENTES\n SU SALDO ACTUAL ES: $ " ,self.cuenta[cta].saldo ,"\n PARA REALIZAR EL PAGO DESEADO NECESITA DISPONER DE : $ ", pago + self.costos_mantenim[13][1])
                             dep = input("¿Desea hacer un depósito?\n Y/N ")
@@ -1309,7 +1322,7 @@ class Banco():
                                 monto = False
                 else:
                     print("La cuenta ", cta, " no le pertenece")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_individuos()
             else:
                 print("LA CUENTA N° ", cta, " NO EXISTE")
@@ -1347,14 +1360,14 @@ class Banco():
                         monto = False
                         print("****PAGO REALIZADO******")
                         print("Saldo actual: $ ", self.cuenta[cta].saldo)
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                 else:
                     print("La cuenta ", cta, " no le pertenece")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_pyme()
             else:
                 print("LA CUENTA N° ", cta, " NO EXISTE")
-                input("Presione cualquier tecla para continuar")
+                input("Presione cualquier tecla para continuar ")
                 monto = True
 
     def listar_sucursales (self): #LISTA_SUCURSALES
@@ -1363,7 +1376,7 @@ class Banco():
             """ N° sucursal: {}
                 Localidad: {}
             """.format(suc, self.dictSucursales[suc][0]))
-        input("Presione cualquier tecla para continuar")
+        input("Presione cualquier tecla para continuar ")
 
     def agregar_sucursal(self): 
         while True:
@@ -1399,21 +1412,21 @@ class Banco():
         print("*****LISTADO DE CLIENTES INDIVIDUOS*****")
         for cli in self.clientes_usuarios:
             print(self.clientes_usuarios[cli])
-        input("Presione cualquier tecla para continuar")
+        input("Presione cualquier tecla para continuar ")
         self.menu_administrador()
     
     def listar_pymes(self): #LISTAR_PYMES LISTADO_PYMES
         print("*****LISTADO DE USUARIOS PYMES*****")
         for py in self.clientes_pymes:
             print(self.clientes_pymes[py])
-        input("Presione cualquier tecla para continuar")
+        input("Presione cualquier tecla para continuar ")
         self.menu_administrador()
 
     def listar_cuentas(self):
         print("Lista de cuentas")
         for cu in self.cuenta:
             print(self.cuenta[cu].__str__())
-        input("Presione cualquier tecla para continuar")
+        input("Presione cualquier tecla para continuar ")
         self.menu_administrador()
 
     def listar_cuentas_propias(self, tit): #LISTADO_CUENTAS_PROPIAS
@@ -1427,7 +1440,7 @@ class Banco():
                 else:
                     pass
             lista = False
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
 
     def ver_mis_plazos_fijos(self): #LISTADO_PLAZOS_FIJOS
         lista = True
@@ -1440,7 +1453,7 @@ class Banco():
                 else:
                     pass
             lista = False
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
         
     def mis_saldos (self,tit): #LISTAR_SALDOS
         lista = True
@@ -1453,7 +1466,7 @@ class Banco():
                 else:
                     pass
             lista = False
-            input("Presione cualquier tecla para continuar")
+            input("Presione cualquier tecla para continuar ")
 
     def crear_cuenta_pymes(self):
         retencion = self.costos_mantenim[1][1]
@@ -1513,7 +1526,7 @@ class Banco():
                         self.menu_pyme()
                     else:
                         print("OPCION INCORRECTA")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         menu = True
             else:
                 self.menu_pyme()
@@ -1574,10 +1587,10 @@ class Banco():
                             self.loguin()
                         else:
                             print("OPCION INCORRECTA")
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                             menu = True
             else:
-                input("Presione cualquier tecla para continuar")
+                input("Presione cualquier tecla para continuar ")
                 self.menu_pyme()
 
     def plazo_fijo(self):
@@ -1615,13 +1628,13 @@ class Banco():
                         plazo_fijo = PlazoFijo(num, titular, plazo, monto, inicio, a_retirar, vencim)
                         self.dic_plazo_fijo[num] = plazo_fijo
                         print("Plazo fijo creado con éxito")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         self.menu_pyme()
                     elif acepta == "2":
                         self.menu_pyme()
                     else:
                         print("Opción incorrecta")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                 elif dias == 2:
                     retiro = timedelta(60)
                     fecha = date.today()
@@ -1640,13 +1653,13 @@ class Banco():
                         plazo_fijo = PlazoFijo(num, titular, plazo, monto, inicio, a_retirar, vencim)
                         self.dic_plazo_fijo[num] = plazo_fijo
                         print("Plazo fijo creado con éxito")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         self.menu_pyme()
                     elif acepta == "2":
                         self.menu_pyme()
                     else:
                         print("Opción incorrecta")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                 elif dias == 3:
                     retiro = timedelta(90)
                     fecha = date.today()
@@ -1665,13 +1678,13 @@ class Banco():
                         plazo_fijo = PlazoFijo(num, titular, plazo, monto, inicio, a_retirar, vencim)
                         self.dic_plazo_fijo[num] = plazo_fijo
                         print("Plazo fijo creado con éxito")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         self.menu_pyme()
                     elif acepta == "2":
                         self.menu_pyme()
                     else:
                         print("Opción incorrecta")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                 elif dias == 4:
                     retiro = timedelta(180)
                     fecha = date.today()
@@ -1690,14 +1703,14 @@ class Banco():
                         plazo_fijo = PlazoFijo(num, titular, plazo, monto, inicio, a_retirar, vencim)
                         self.dic_plazo_fijo[num] = plazo_fijo
                         print("PLAZO FIJO REALIZADO CON EXITO")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         self.menu_pyme()
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                     elif acepta == "2":
                         self.menu_pyme()
                     else:
                         print("Opción incorrecta")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                 elif dias == 5:
                     retiro = timedelta(360)
                     fecha = date.today()
@@ -1716,15 +1729,15 @@ class Banco():
                         plazo_fijo = PlazoFijo(num, titular, plazo, monto, inicio, a_retirar, vencim)
                         self.dic_plazo_fijo[num] = plazo_fijo
                         print("Plazo fijo creado con éxito")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         self.menu_pyme()
-                        input("Presione cualquier tecla para continuar")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
+                        input("Presione cualquier tecla para continuar ")
                     elif acepta == "2":
                         self.menu_pyme()
                     else:
                         print("Opción incorrecta")
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                 elif dias == 6:
                     self.menu_pyme()
             elif opcion == "2":
@@ -1858,7 +1871,7 @@ class Banco():
                         self.movimientos_cuentas[cta]["Día ", dolar.year, dolar.month, dolar.day, "Hora ", dolar.hour, dolar.minute, dolar.second] = ( 
             "COMPRA DE U$S "+ str(dol)+" POR $ "+ str(imp))
                         print("Saldo actual: $ ", self.cuenta[cta].saldo)
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                     else:
                         print("FONDOS INSUFICIENTES\n SU SALDO ACTUAL ES: $ " ,self.cuenta[cta].saldo ,"\n PARA REALIZAR LA COMPRA DESEADA NECESITA DISPONER DE : ", imp)
                         dep = input("¿Desea hacer un depósito?\n Y/N ")
@@ -1868,7 +1881,7 @@ class Banco():
                             monto = False
                 else:
                     print("La cuenta n°", cta, " no le pertenece")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_individuos()
             else:
                 print("LA CUENTA N° ", cta, " NO EXISTE")
@@ -1904,7 +1917,7 @@ class Banco():
                         # fecha_actual = datetime.utcnow()
                         # nueva = datetime.timedelta(days=1)
                         #print(datetime.utcnow() + datetime(days=30))
-                        input("Presione cualquier tecla para continuar")
+                        input("Presione cualquier tecla para continuar ")
                         monto = False
                     else:
                         print("FONDOS INSUFICIENTES\n SU SALDO ACTUAL ES: $ " ,self.cuenta[cta].saldo ,"\n PARA REALIZAR LA COMPRA DESEADA NECESITA DISPONER DE : $ ", imp)
@@ -1912,15 +1925,15 @@ class Banco():
                         if dep == "y" or dep == "Y":
                             self.deposito()
                         else:
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                             monto = False
                 else:
                     print("La cuenta n°", cta, " no le pertenece")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                     self.menu_pyme()
             else:
                 print("LA CUENTA N° ", cta, " NO EXISTE")
-                input("Presione cualquier tecla para continuar")
+                input("Presione cualquier tecla para continuar ")
                 monto = True
 
     def crear_cuenta(self):
@@ -1973,7 +1986,7 @@ class Banco():
                             self.loguin()
                         else:
                             print("OPCION INCORRECTA")
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                             menu = True
             elif tipo == "2":
                 print("\nPara abrir esta cuenta debe hacer un depósito inicial de $ ", retencion)
@@ -2027,7 +2040,7 @@ class Banco():
                                 self.menu_individuos()
                             else:
                                 print("OPCION INCORRECTA")
-                                input("Presione cualquier tecla para continuar")
+                                input("Presione cualquier tecla para continuar ")
                                 menu = True
                 else:
                     self.menu_individuos()
@@ -2047,7 +2060,7 @@ class Banco():
                     moneda = input("Ingrese moneda: ")
                 else:
                     print("Opción incorrecta")
-                    input("Presione cualquier tecla para continuar")
+                    input("Presione cualquier tecla para continuar ")
                 saldo = 0
                 c_c_c = CuentaCorrienteComun(tipo, titular, sucursal, num_cuenta, cbu, fecha_apert, moneda, saldo)
                 self.cuenta[num_cuenta] = c_c_c
@@ -2088,7 +2101,7 @@ class Banco():
                             self.menu_individuos()
                         else:
                             print("OPCION INCORRECTA")
-                            input("Presione cualquier tecla para continuar")
+                            input("Presione cualquier tecla para continuar ")
                             menu = True
                 else:
                     self.menu_individuos()
@@ -2188,7 +2201,7 @@ class Banco():
                                         cierre = datetime.now()
                                         self.movimientos_cuentas[cerrar]["Día ", cierre.year, cierre.month, cierre.day, "Hora ", cierre.hour, cierre.minute, cierre.second] = ( 
             "CIERRE DE CUENTA")
-                                        input("Presione cualquier tecla para continuar")
+                                        input("Presione cualquier tecla para continuar ")
                                         self.menu_pyme()
                                         iterar = False
                                     elif saldo > 0:
@@ -2240,7 +2253,7 @@ class Banco():
                                         cierre = datetime.now()
                                         self.movimientos_cuentas[cerrar]["Día ", cierre.year, cierre.month, cierre.day, "Hora ", cierre.hour, cierre.minute, cierre.second] = ( 
             "CIERRE DE CUENTA")
-                                        input("Presione cualquier tecla para continuar")
+                                        input("Presione cualquier tecla para continuar ")
                                         self.menu_individuos()
                                         iterar = False
                                     else:
@@ -2248,7 +2261,7 @@ class Banco():
                                         self.extraccion()
                                 else:
                                     print("Ud no puede cerrar ésta cuenta\nLa cuenta n°", cerrar, " no le pertenece")
-                                    input("Presione cualquier tecla para continuar")
+                                    input("Presione cualquier tecla para continuar ")
                                     iterar = False
                             else:
                                 iterar = False
