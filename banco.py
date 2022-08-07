@@ -941,7 +941,7 @@ class Banco():
                 else:
                     opcion = False
 
-    def saldos (self): #MENU-SALDOS
+    def saldos (self): #MENU_SALDOS
         print("****MENU SALDOS****")
         print("Ver el saldo de: ")
         opcion = input("1- TODAS LAS CUENTAS\n2- CAJA AHORRO COMÚN\n3- CAJA AHORRO CON SALDO RETENIDO\n4- CUENTA CORRIENTE COMÚN\n5- CUENTA CORRIENTE CON SALDO RETENIDO\n6- CUENTAS CORRIENTE CON SALDO DEUDOR\n7- VOLVER AL MENU ANTERIOR\nIngrese opción: ")
