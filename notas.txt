@@ -194,19 +194,76 @@ class PlazoFijo():
         self.fecha_inicio = fecha_inicio
         self.importe_retiro = importe_retiro
         self.fecha_vencimiento = fecha_vencimiento
-        
+
    - def __str__(self):
 
 
 
+BASE_DATOS.PY 
 
+class Base_datos():
 
+    dic_cli_nombre_us = {
+        "us1" : {
+            "Nombre" : "Juan",
+            "Apellido" : "Lopez",
+            "Domicilio" : "Allá al 1100",
+            "D.N.I." : Secuencia.next_nro_dni(),
+            "Cuit/Cuil" : Secuencia.next_nro_dni()-1,
+            "Teléfono" : rd.randint(5550000,5559999),
+            "Email" : "jlopez@algo.com",
+            "Nombre usuario" : "us1",
+            "Password" : "pass1"
 
+BB_DD_PYMES.PY 
+    dic_clientes_pymes = {
+        "py1" : {
+            "Razón social" : "La perinola",
+            "Domicilio" : "Acá al 1100",
+            "Cuit/cuil" : Secuencia.next_nro_dni(),
+            "Teléfono" : rd.randint(5550000,5559999),
+            "Email" : "laperinola@algo.com",
+            "Nombre usuario" : "py1",
+            "Password" : "pass1",
 
+BB_DD_CUENTAS.PY 
+    dic_cuentas = {
+            Secuencia.next_nro_cuenta()  : {
+                "Cuenta tipo" : "3",
+                "Titular" : "py3",
+                "Sucursal" : rd.randint(100,103),
+                "N° de cuenta" : Secuencia.next_nro_cuenta()-1,
+                "CBU" : Secuencia.next_cbu(),
+                "Fecha apertura" : datetime.now(),
+                "Moneda" : "Pesos",
+                "Saldo" : 47500
 
+class Secuencia():
 
+    nro_cuenta = 1000
+    nro_dni = 20000000
+    nro_cbu = 900000000000
+    nro_plazo_fijo = 100
+    
+    @abstractclassmethod
+    def next_nro_cuenta(cls):
+        cls.nro_cuenta += 1
+        return cls.nro_cuenta-1
 
+    @abstractclassmethod
+    def next_nro_dni(cls):
+        cls.nro_dni += 1
+        return cls.nro_dni-1
+    
+    @abstractclassmethod
+    def next_cbu(cls):
+        cls.nro_cbu += 1
+        return cls.nro_cbu-1
 
+    @abstractclassmethod
+    def next_plazo_fijo(cls):
+        cls.nro_plazo_fijo += 1
+        return cls.nro_plazo_fijo-1
 
 
 

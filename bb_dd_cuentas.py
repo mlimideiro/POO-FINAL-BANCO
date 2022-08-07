@@ -44,7 +44,7 @@ class BaseDatosCuentas():
                 "CBU" : Secuencia.next_cbu(),
                 "Fecha apertura" : datetime.now(),
                 "Moneda" : "Pesos",
-                "Saldo" : -20000
+                "Saldo" : 20000
                 },
             }
         
