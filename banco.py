@@ -1,4 +1,3 @@
-#from clases import *
 import random as rd
 from secuencia import *
 from datetime import date, datetime, timedelta
