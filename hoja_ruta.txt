@@ -44,12 +44,45 @@ N° de cuenta destino: ---> 1008
 Monto a pagar: -->  480
 N° de cuenta: --> 1008
 8 - LISTAR SALDO DE MIS CUENTAS
+6 - MOVIMIENTOS
+Ingrese el n° de cuenta para ver sus movimientos: --> 1008
 9 - CERRAR CUENTA
 1 - CONTINUAR
 Ingrese el n° de cuenta -->  1009
 Monto a extraer: --> 500
 N° de cuenta: --> 1009
 5 - LISTAR CUENTAS
+
+
+CLIENTE PYME
+
+1- LISTAR MIS CUENTA --> SALDO DE CUENTA 1000 --> 47500
+6- COMPRAR  MONEDA EXTRANJERA
+Cantidad de dólares a comprar: U$S --> 120
+--> 1000
+8- PAGAR SUELDOS
+2- LISTAR EMPLEADOS
+1- AGREGAR EMPLEADO
+2- VOLVER AL MENU ANTERIOR
+2- VOLVER AL MENU ANTERIOR
+S- SALIR
+8- PAGAR SUELDOS
+--> 1000
+10- MOVIMIENTOS
+--> 1000
+S- SALIR
+--> 1 (MENU ADMINISTRADOR)
+ 9- LISTADO DE CUENTAS
+ --> VERIFICAR SALDO DE CUENTA 1000 DE py3 (self.cuenta)
+
+
+
+
+
+
+
+
+
 
 
 

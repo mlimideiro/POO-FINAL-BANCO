@@ -60,7 +60,7 @@ class Banco():
             18: ["Costo depósito C.C.S.R.",0],
             19: ["Pago Sueldos Mismo Banco",0],
             20: ["Pago Sueldos Otro Banco",4],
-            21: ["Cotización Dólar",rd.randint(100,190)],
+            21: ["Cotización Dólar",rd.randint(240,300)],
             22: ["Valor Bonos",rd.randint(1000,5000)],
             23: ["Variación Bonos",rd.randint(2,5)]
         }
@@ -730,7 +730,7 @@ class Banco():
                                 self.movimientos_cuentas[cuenta_a_debitar]["Día ", suel.year, suel.month, suel.day, "Hora ", suel.hour, suel.minute, suel.second] = ("PAGO DE SUELDOS POR $ " + str(total + tot_comision))
                                 print("El saldo actual de la cuenta n° " + str(cuenta_a_debitar) + " es $ ", str(self.cuenta[cuenta_a_debitar].saldo))
                                 input("Presione cualquier tecla para continuar ")
-                                monto = False
+                                monto = False 
                             else:
                                 print("LA CUENTA N° ", cuenta_a_debitar, " NO EXISTE")
                                 o = True
@@ -1861,7 +1861,7 @@ class Banco():
                 except ValueError:
                     print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
             imp = dol * self.costos_mantenim[21][1]
-            print("SE DEBITARON DE LA CUENTA N° " + str(cta) + "$" + str(imp))
+            print("SE DEBITARON DE LA CUENTA N° " + str(cta) + ' ',"$" + str(imp))
             c = cta in self.cuenta
             if c == True:
                 if self.cuenta[cta].titular == self.cliente_log.nombre_us:
