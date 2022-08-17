@@ -325,7 +325,7 @@ class Banco():
                                     except ValueError:
                                         print("DEBE INGRESAR UN NUMERO, SIN PUNTOS")
                                 c = cuenta_a_buscar in self.movimientos_cuentas
-                                if c == True:
+                                if c:
                                     for cu in self.movimientos_cuentas:
                                         if cu == cuenta_a_buscar:
                                             mov = self.movimientos_cuentas.get(cu)
@@ -358,7 +358,7 @@ class Banco():
                                     except ValueError:
                                         print("DEBE INGRESAR UN NUMERO, SIN PUNTOS")
                                 c = cuenta_a_buscar in self.movimientos_cuentas
-                                if c == True:
+                                if c:
                                     for cu in self.movimientos_cuentas:
                                         if cu == cuenta_a_buscar:
                                             mov = self.movimientos_cuentas.get(cu)
@@ -471,7 +471,7 @@ class Banco():
                     except ValueError:
                         print("DEBE INGRESAR UN NUMERO, SIN PUNTOS")
                 c = cuenta_a_buscar in self.movimientos_cuentas
-                if c == True:
+                if c:
                     for cu in self.movimientos_cuentas:
                         if cu == cuenta_a_buscar:
                             mov = self.movimientos_cuentas.get(cu)
@@ -509,7 +509,7 @@ class Banco():
                     except ValueError:
                         print("DEBE INGRESAR UN NUMERO, SIN PUNTOS")
                 c = cuenta_a_buscar in self.movimientos_cuentas
-                if c == True:
+                if c:
                     for cu in self.movimientos_cuentas:
                         if cu == cuenta_a_buscar:
                             mov = self.movimientos_cuentas.get(cu)
@@ -591,7 +591,7 @@ class Banco():
     def listar_empleados(self, tit):
         print("LISTA DE EMPLEADOS DE ", tit)
         lista = True
-        if lista == True:
+        if lista:
             for emp in self.sueldos_pymes:
                 employee = self.sueldos_pymes.get(emp)
                 if employee.empresa == tit:
@@ -613,7 +613,7 @@ class Banco():
                 print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
         print("****MENU PARA MODIFICAR DATOS DE CLIENTE PYMES****")
         existe = dni_empl in self.sueldos_pymes
-        if existe == True:
+        if existe:
             for emp in self.sueldos_pymes:
                 empleado_a_modif = self.sueldos_pymes.get(emp)
                 if empleado_a_modif.dni == dni_empl:
@@ -676,7 +676,7 @@ class Banco():
     def listar_sueldos(self, tit):
         print("LISTA DE EMPLEADOS y SUELDOS A LIQUIDAR DE ", tit)
         lista = True
-        if lista == True:
+        if lista:
             for emp in self.sueldos_pymes:
                 employee = self.sueldos_pymes.get(emp)
                 if employee.empresa == tit:
@@ -701,8 +701,8 @@ class Banco():
                 except ValueError:
                     print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
             cue = cuenta_a_debitar in self.cuenta
-            if cue == True:
-                if lista == True:
+            if cue:
+                if lista:
                     tot_comision = 0
                     total = 0
                     for emp in self.sueldos_pymes:
@@ -723,7 +723,7 @@ class Banco():
                         monto=True
                         while monto == True:
                             c= cuenta_a_debitar in self.cuenta
-                            if c == True:
+                            if c:
                                 self.cuenta[cuenta_a_debitar].saldo -=  total + tot_comision
                                 suel = datetime.now()
                                 self.movimientos_cuentas[cuenta_a_debitar]["Día ", suel.year, suel.month, suel.day, "Hora ", suel.hour, suel.minute, suel.second] = ("PAGO DE SUELDOS POR $ " + str(total + tot_comision))
@@ -881,7 +881,7 @@ class Banco():
         nom_pyme = input("Ingrese el nombre de usuario de la pymes: ")
         print("****MENU PARA MODIFICAR DATOS DE CLIENTE PYMES****")
         existe = nom_pyme in self.clientes_pymes
-        if existe == True:
+        if existe:
             modificar = True
             while modificar == True:
                 print("Cliente Pymes ", self.clientes_pymes[nom_pyme].razon_social)
@@ -1021,12 +1021,12 @@ class Banco():
 
     def buscar_cliente(self, cliente): #BUSCAR_CLIENTES
         a = cliente in self.clientes_pymes
-        if a == True:
+        if a:
             print("\nCLIENTE ", cliente, "\n", self.clientes_pymes[cliente],"\n")
             input("Presione cualquier tecla para continuar ")
         elif a == False:
             a = cliente in self.clientes_usuarios
-            if a == True:
+            if a:
                 print("\nCLIENTE ", cliente, " ENCONTRADO\n\n", self.clientes_usuarios[cliente],"\n")
                 input("Presione cualquier tecla para continuar ")
             else:
@@ -1034,7 +1034,7 @@ class Banco():
 
     def buscar_cliente_dni(self, dni): #BUSCAR_DNI
         a = dni in self.clientes_dni
-        if a == True:
+        if a:
             print("\nEL CLIENTE CON DNI ", dni, "ES:\n", self.clientes_dni[dni],"\n")
             input("Presione cualquier tecla para continuar ")
         else:
@@ -1060,7 +1060,7 @@ class Banco():
         elif tipo == "4":
             costo = self.costos_mantenim[18][1]
         c = cta in self.cuenta
-        if c == True:
+        if c:
             self.cuenta[cta].saldo +=  dep - costo
         depo = datetime.now()
         self.movimientos_cuentas[cta]["Día ", depo.year, depo.month, depo.day, "Hora ", depo.hour, depo.minute, depo.second] = ("REALIZO UN DEPOSITO POR $ " + str(dep))
@@ -1229,7 +1229,7 @@ class Banco():
                 except ValueError:
                     print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
             c= cta in self.cuenta
-            if c == True:
+            if c:
                 if self.cuenta[cta].titular == self.cliente_log.nombre_us:
                     if self.cuenta[cta].saldo >= ext:
                         self.cuenta[cta].saldo -=  ext
@@ -1274,7 +1274,7 @@ class Banco():
                 except ValueError:
                     print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
             c= cta in self.cuenta
-            if c == True:
+            if c:
                 if self.cuenta[cta].titular == self.cliente_log.nombre_us:
                     if self.cuenta[cta].tipo == "1":
                         if self.cuenta[cta].saldo >= pago + self.costos_mantenim[6][1]:
@@ -1342,7 +1342,7 @@ class Banco():
                 except ValueError:
                     print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
             c= cta in self.cuenta
-            if c == True:
+            if c:
                 if self.cuenta[cta].titular == self.cliente_log.nombre_us:
                     if self.cuenta[cta].tipo == "4":
                         self.cuenta[cta].saldo -=  pago + self.costos_mantenim[7][1]
@@ -1432,7 +1432,7 @@ class Banco():
 
     def listar_cuentas_propias(self, tit): #LISTADO_CUENTAS_PROPIAS
         lista = True
-        if lista == True:
+        if lista:
             print("Lista de cuentas")
             for cu in self.cuenta:
                 cuenta = self.cuenta.get(cu)
@@ -1445,7 +1445,7 @@ class Banco():
 
     def ver_mis_plazos_fijos(self): #LISTADO_PLAZOS_FIJOS
         lista = True
-        if lista == True:
+        if lista:
             print("Mis plazos fijos")
             for pl in self.dic_plazo_fijo:
                 plazo = self.dic_plazo_fijo.get(pl)
@@ -1458,7 +1458,7 @@ class Banco():
         
     def mis_saldos (self,tit): #LISTAR_SALDOS
         lista = True
-        if lista == True:
+        if lista:
             print("Saldo de mis cuentas")
             for cu in self.cuenta:
                 cuenta = self.cuenta.get(cu)
@@ -1862,7 +1862,7 @@ class Banco():
             imp = dol * self.costos_mantenim[21][1]
             print("SE DEBITARON DE LA CUENTA N° " + str(cta) + ' ',"$" + str(imp))
             c = cta in self.cuenta
-            if c == True:
+            if c:
                 if self.cuenta[cta].titular == self.cliente_log.nombre_us:
                     if self.cuenta[cta].saldo >= imp:
                         self.cuenta[cta].saldo -= imp
@@ -1906,7 +1906,7 @@ class Banco():
             imp = bon * self.costos_mantenim[22][1]
             print("Va a comprar $ ",imp, " en bonos al ", self.costos_mantenim[23][1], "% mensual.")
             c = cta in self.cuenta
-            if c == True:
+            if c:
                 if self.cuenta[cta].titular == self.cliente_log.nombre_us:
                     if self.cuenta[cta].saldo >= imp:
                         self.cuenta[cta].saldo -= imp
@@ -2188,7 +2188,7 @@ class Banco():
                     except ValueError:
                         print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
                 c = cerrar in self.cuenta
-                if c == True:
+                if c:
                     for cu in self.cuenta:
                         iterar = True
                         while iterar == True:
@@ -2240,7 +2240,7 @@ class Banco():
                     except ValueError:
                         print("DEBE INGRESAR NUMEROS, SIN PUNTOS")
                 c = cerrar in self.cuenta
-                if c == True:
+                if c:
                     for cu in self.cuenta:
                         iterar = True
                         while iterar == True:
